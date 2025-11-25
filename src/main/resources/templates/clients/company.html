@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:text="${company.name}">Tên Công Ty Mặc Định</h1>
+
+	<img th:src="@{'/images/' + ${company.logo}}" width="150" />
+
+	<div th:text="${company.slogan}">Slogan công ty</div>
+
+	<hr>
+</body>
+</html>

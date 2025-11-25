@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -15,16 +16,16 @@ public class LoginController {
 	}
 	
 	@PostMapping("/dang-nhap")
-	public String login(HttpServletRequest req) {
+	public String login(HttpServletRequest req, ModelMap model) {
 		String username = req.getParameter("username").toString();
 		String password = req.getParameter("password").toString();
 		
 		if (username.equals("trung") && password.equals("123")) {
-			req.setAttribute("uuid", username);
-			req.setAttribute("pwd", password);
+			model.addAttribute("uuid", username);
+			model.addAttribute("pwd", password);
 			return "clients/info";
 		} else {
-			req.setAttribute("message", "Username / password incorrect");
+			model.addAttribute("message", "Username / password incorrect");
 			return "clients/login";
 		}
 	} 
