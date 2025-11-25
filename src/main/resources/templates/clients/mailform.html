@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gửi Email</title>
+</head>
+<body>
+
+    <h2>Send Email Form</h2>
+
+    <h3 th:if="${message}" th:text="${message}" style="color: green;"></h3>
+    <h3 th:if="${error}" th:text="${error}" style="color: red;"></h3>
+
+    <form th:action="@{/send-mail}" 
+          method="post" 
+          enctype="multipart/form-data" 
+          th:object="${mail}">
+
+        <div>From:</div>
+        <input type="text" th:field="*{from}" placeholder="Email người gửi" />
+
+        <div>To:</div>
+        <input type="text" th:field="*{to}" placeholder="Email người nhận" />
+
+        <div>Subject:</div>
+        <input type="text" th:field="*{subject}" />
+
+        <div>Body:</div>
+        <textarea th:field="*{body}" rows="3" cols="30"></textarea>
+
+        <div>Attachment File:</div>
+        <input type="file" name="attachment" />
+
+        <hr>
+        <button type="submit">Send</button>
+
+    </form>
+
+</body>
+</html>
