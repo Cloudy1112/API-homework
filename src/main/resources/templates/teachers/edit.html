@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cập nhật Giảng viên</title>
+</head>
+<body>
+
+	<h2>Cập nhật thông tin Giảng viên</h2>
+
+	<form th:action="@{/teacher/update}" method="post"
+		th:object="${teacher}">
+
+		<div>Họ tên</div>
+		<input type="text" th:field="*{name}" th:value />
+
+		<div>Tuổi</div>
+		<input type="number" th:field="*{age}" />
+
+		<div>Đơn vị</div>
+		<select th:field="*{depart}">
+			<option th:each="entry : ${departs}" 
+				th:value="${entry.key}"
+				th:text="${entry.value}">
+			</option>
+		</select>
+
+		<hr>
+		<button type="submit">Cập nhật</button>
+
+	</form>
+
+</body>
+</html>

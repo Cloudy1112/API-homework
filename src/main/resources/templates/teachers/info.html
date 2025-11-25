@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin Giảng viên</title>
+</head>
+<body>
+
+    <h2>Thông tin Giảng viên</h2>
+
+    <ul>
+        <li>Họ tên: <span th:text="${teacher.name}">Tên mặc định</span></li>
+        
+        <li>Tuổi: <span th:text="${teacher.age}">0</span></li>
+        
+        <li>Đơn vị: <span th:text="${teacher.depart}">Khoa mặc định</span></li>
+    </ul>
+
+    <hr>
+    
+    <a th:href="@{/teacher/edit/{name}(name=${teacher.name})}">Chỉnh sửa thông tin</a>
+
+</body>
+</html>
