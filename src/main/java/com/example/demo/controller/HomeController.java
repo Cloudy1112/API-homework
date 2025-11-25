@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class HomeController {
 	@Autowired
-	CompanyModel company = new CompanyModel("FPT", "Hello", "logoFPT"); //Spring inject bean Company in here
+	CompanyModel company;
 	
 	@GetMapping("/home")
 	public String Index(HttpServletRequest req) {
