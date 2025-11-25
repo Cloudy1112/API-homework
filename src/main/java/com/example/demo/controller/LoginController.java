@@ -3,8 +3,11 @@ package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.UserModel;
 
@@ -46,9 +49,26 @@ public class LoginController {
 		model.addAttribute("uuid", user.getUsername());
 		model.addAttribute("pwd", user.getPassword());
 		
-		return "clients/info";
+		return "clients/userinfo";
 	}
 	
+	@RequestMapping("/user/edit/{username}")
+	public String EditUser (ModelMap model, 
+							@PathVariable ("username") String username){
+		model.addAttribute("uuid", username);
+		return "clients/useredit";
+	}
+	
+	@PostMapping("/user-edit")
+	public String Edit(ModelMap model, UserModel user, RedirectAttributes redirectAttributes) {
+		
+		model.addAttribute("uuid", user.getUsername());
+		model.addAttribute("pwd", user.getPassword());
+		// Dùng addFlashAttribute để truyền tin nhắn sang trang sau khi redirect
+	    redirectAttributes.addFlashAttribute("message", "Đã cập nhật thông tin thành công! Vui lòng đăng nhập lại.");
+		return "redirect:/user-dang-nhap";
+	    //return "clients/userinfo";
+	}
 	
 
 }
