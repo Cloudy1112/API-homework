@@ -30,10 +30,12 @@ public class MailController {
                        @RequestParam("attachment") MultipartFile file) {
         try {
             // Gọi service gửi mail (đã viết ở bước trước)
-            // Lưu ý: Cần sửa service để nhận thêm tham số file nếu muốn đính kèm thật
-            mailservice.send(mailInfo.getTo(), mailInfo.getSubject(), mailInfo.getBody());
+            mailservice.send(mailInfo.getTo(), mailInfo.getSubject(), mailInfo.getBody(),file);
             
-            model.addAttribute("message", "Gửi email thành công!");
+            if (file.isEmpty())
+            	model.addAttribute("message", "Gửi email thành công!");
+            else
+            	model.addAttribute("message", "Gửi email kèm file thành công!");
         } catch (Exception e) {
             model.addAttribute("error", "Lỗi: " + e.getMessage());
         }
