@@ -5,8 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration;
 
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-
 public class SpringApiApplication {
 
 	public static void main(String[] args) {
